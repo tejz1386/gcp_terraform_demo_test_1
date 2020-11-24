@@ -1,2 +1,2 @@
-# gcp_terraform_demo_test_1
-new terraform repo
+# gcp_terraform_demo
+gcp_terraform_demo
