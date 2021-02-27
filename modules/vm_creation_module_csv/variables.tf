@@ -21,8 +21,20 @@ variable "csv_input_file_name" {}
 variable "subnetwork" {
     type = map
 default = {
-    x1q_app   ="subnet-development"
-    x1q_hana  ="subnet-production"
-    x1q_sql   ="subnet-staging"
+    x1q_app   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
+    x1q_hana  ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
+    x1q_sql   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
     }
   }
+  variable "secondary_ip" {
+      type = list(string)
+      default = []
+  }
+  variable "sole_tenant" {
+      type = list(string)
+      default = []
+  }
+  variable "os_image" {
+      type = string
+  }
+  variable "sec_alias_ip" {}

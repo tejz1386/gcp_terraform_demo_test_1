@@ -58,6 +58,7 @@ locals {
   server_disk_01        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk1}")
   server_disk_02        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk2}")
   server_disk_03        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk3}")
+  
 }
 output "server_disk1_consolidation" {
   value = "${local.server_disk_01}"

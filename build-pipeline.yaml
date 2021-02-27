@@ -1,0 +1,42 @@
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+# more info https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml
+# trigger: none
+trigger:
+  branches:
+    include:
+    - master
+
+jobs:
+- job: Resource_Creation
+  steps:
+  - task: Bash@3
+    displayName: Setup .terraformrc
+    inputs:
+      targetType: 'inline' 
+      script: |
+        cat <<EOF | tee ~/.terraformrc -
+        credentials "$(TF_VAR_HOSTNAME)" {
+          token = "$(TF_VAR_TOKEN)"
+        }
+        EOF
+  - task: Bash@3
+    displayName: Terraform Apply
+    inputs:
+      targetType: 'inline' 
+      script: |
+        terraform init -backend-config=backend.hcl
+        terraform plan
+        terraform apply
+  - task: Bash@3
+    displayName: Clean up .terraformrc
+    inputs:
+      targetType: 'inline' 
+      script: |
+        rm -f ~/.terraformrc
+pool: 
+    name: terraform-ptfe
+    demands:
+    # - TF_HOST -equals terraform.test.slb.com # test TFE site
+    - TF_HOST -equals iprovision.it.slb.com
+    - TF_VERSION -equals 0.12.23
