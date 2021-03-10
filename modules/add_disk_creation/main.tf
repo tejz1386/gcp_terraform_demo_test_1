@@ -6,8 +6,8 @@ resource "google_compute_disk" "testdisk" {
   for_each     = { for inst in local.instances : inst.add_gcp_vm_name => inst }
       name  = "${each.value.add_gcp_vm_name}-${each.value.gcp_vm_disk_desc}"
       size  = each.value.add_gcp_vm_disk 
-      type  = "pd-standard"
-      zone  = "europe-west1-d"
+      type  = each.value.gcp_vm_disktype
+      zone  = each.value.gcp_vm_zone
     labels = {
       environment = "development"
     }
@@ -16,6 +16,7 @@ resource "google_compute_disk" "testdisk" {
 resource "google_compute_attached_disk" "attachdisk" {
   for_each      = var.add_disk_size
     disk     =  google_compute_disk.testdisk[each.key].self_link
+    device_name = google_compute_disk.testdisk[each.key].self_link
     instance =  each.key
-    zone = "europe-west1-d"
+    zone = each.value.gcp_vm_zone
 }

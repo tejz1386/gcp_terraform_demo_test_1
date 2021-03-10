@@ -16,7 +16,7 @@ triggers = {
     03 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 2)}"
     04 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 3)}"
     05 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 4)}"
-    06 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 5)}"
+    # 06 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 5)}"
   }
 }
 
@@ -26,12 +26,12 @@ locals {
   gcp_vm_disk2          = null_resource.csv_interpolation_method.*.triggers.03
   gcp_vm_disk3          = null_resource.csv_interpolation_method.*.triggers.04
   gcp_vm_disk4          = null_resource.csv_interpolation_method.*.triggers.05
-  gcp_vm_disk5          = null_resource.csv_interpolation_method.*.triggers.06
+  # gcp_vm_disk5          = null_resource.csv_interpolation_method.*.triggers.06
   server_disk_01        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk1}")
   server_disk_02        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk2}")
   server_disk_03        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk3}")
   server_disk_04        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk4}")
-  server_disk_05        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk5}")
+  # server_disk_05        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk5}")
 
 }
 
@@ -47,6 +47,6 @@ output "server_disk3_consolidation" {
 output "server_disk4_consolidation" {
   value = "${local.server_disk_04}"
 }
-output "server_disk5_consolidation" {
-  value = "${local.server_disk_05}"
-}
+# output "server_disk5_consolidation" {
+#   value = "${local.server_disk_05}"
+# }

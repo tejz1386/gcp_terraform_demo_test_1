@@ -30,11 +30,32 @@ default = {
       type = list(string)
       default = []
   }
+  variable "alias_ip" {
+   type = list(string)
+      default = ["yes"]
+   }
   variable "sole_tenant" {
       type = list(string)
       default = []
   }
   variable "os_image" {
-      type = string
+      type = map
+      default = {
+          windows2016 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
+          windows2012 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
+          sles12sp4   = "projects/b95696467908/global/images/sles12sp4-std-byol-slb-image-01202021-v6"
+      }
   }
-  variable "sec_alias_ip" {}
+  variable "os_tag" {
+      type        = list(string)
+      default = []
+  }
+#   variable "on_host_maintenance" {
+#       default = ["yes"]
+#   }
+#   variable "scheduling_a" {
+#       type = object({
+#          on_host_maintenance = list(string)   
+#       })
+#       default = "MIGRATE"
+#   } 

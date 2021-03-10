@@ -2,7 +2,7 @@ resource "google_compute_disk" "testdisk" {
   for_each     = var.server_size
       name  = "${each.key}-${var.disk_number}"
       size  = var.server_size[each.key]
-      type  = "pd-standard"
+      type  = var.disk_type
       zone  = "europe-west1-d"
     labels = {
       environment = "development"
@@ -12,6 +12,8 @@ resource "google_compute_disk" "testdisk" {
 resource "google_compute_attached_disk" "attachdisk" {
   for_each      = var.server_size
     disk     =  google_compute_disk.testdisk[each.key].self_link
+    device_name = "${each.key}-${var.disk_number}"
+    # device_name = google_compute_disk.testdisk[each.key].self_link
     instance = each.key
     zone = "europe-west1-d"
 }

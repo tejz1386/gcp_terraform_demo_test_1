@@ -1,1 +1,1 @@
-add_gcp_vm_name,add_gcp_vm_disk,gcp_vm_disk_desc,gcp_vm_disk_lable01,gcp_vm_disk_label02,gcp_vm_disk_label03
+add_gcp_vm_name,add_gcp_vm_disk,gcp_vm_disk_desc,gcp_vm_disktype,gcp_vm_zone,gcp_vm_disk_label01

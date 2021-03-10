@@ -8,6 +8,7 @@ locals {
 }
 
 resource "null_resource" "csv_interpolation_method" {
+  # locals {
   count = length(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))))
 
   triggers = {
@@ -29,9 +30,10 @@ resource "null_resource" "csv_interpolation_method" {
     16 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 15)}" 
     17 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 16)}"
     18 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 17)}"
-    19 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 18)}"
+    # 19 = "${element(split(",", element(slice(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")), 1, length(split("\n", lookup(data.null_data_source.csv_file.outputs, "file_data")))), count.index)), 18)}"
   }
-}
+  }
+# }
 
 locals {
   gcp_vm_name           = null_resource.csv_interpolation_method.*.triggers.01
@@ -39,45 +41,47 @@ locals {
   gcp_sid               = null_resource.csv_interpolation_method.*.triggers.03
   gcp_desc              = null_resource.csv_interpolation_method.*.triggers.04
   gcp_vm_type           = null_resource.csv_interpolation_method.*.triggers.05
-  gcp_vm_logical        = null_resource.csv_interpolation_method.*.triggers.06
-  gcp_ilb_frontend      = null_resource.csv_interpolation_method.*.triggers.07
-  gcp_instance_grp      = null_resource.csv_interpolation_method.*.triggers.08
-  gcp_vm_phy_ip         = null_resource.csv_interpolation_method.*.triggers.09
-  gcp_vm_lgl_ip         = null_resource.csv_interpolation_method.*.triggers.10
-  gcp_ilb_ip            = null_resource.csv_interpolation_method.*.triggers.11
-  gcp_vm_machine_type   = null_resource.csv_interpolation_method.*.triggers.12
-  gcp_region            = null_resource.csv_interpolation_method.*.triggers.13
-  gcp_zone              = null_resource.csv_interpolation_method.*.triggers.14
-  gcp_os_image          = null_resource.csv_interpolation_method.*.triggers.15
-  gcp_vm_disk1          = null_resource.csv_interpolation_method.*.triggers.16
-  gcp_vm_disk2          = null_resource.csv_interpolation_method.*.triggers.17
-  gcp_vm_disk3          = null_resource.csv_interpolation_method.*.triggers.18
-  gcp_tier_app          = null_resource.csv_interpolation_method.*.triggers.19
+  # gcp_vm_logical        = null_resource.csv_interpolation_method.*.triggers.06
+  # gcp_ilb_frontend      = null_resource.csv_interpolation_method.*.triggers.07
+  # gcp_instance_grp      = null_resource.csv_interpolation_method.*.triggers.08
+  gcp_vm_phy_ip         = null_resource.csv_interpolation_method.*.triggers.06
+  gcp_vm_lgl_ip         = null_resource.csv_interpolation_method.*.triggers.07
+  # gcp_ilb_ip            = null_resource.csv_interpolation_method.*.triggers.11
+  gcp_vm_machine_type   = null_resource.csv_interpolation_method.*.triggers.08
+  gcp_region            = null_resource.csv_interpolation_method.*.triggers.09
+  gcp_zone              = null_resource.csv_interpolation_method.*.triggers.10
+  gcp_os_image          = null_resource.csv_interpolation_method.*.triggers.11
+  gcp_vm_state          = null_resource.csv_interpolation_method.*.triggers.12
+  gcp_vm_protection          = null_resource.csv_interpolation_method.*.triggers.13
+  # gcp_vm_disk1          = null_resource.csv_interpolation_method.*.triggers.16
+  # gcp_vm_disk2          = null_resource.csv_interpolation_method.*.triggers.17
+  # gcp_vm_disk3          = null_resource.csv_interpolation_method.*.triggers.18
+  gcp_tier_app          = null_resource.csv_interpolation_method.*.triggers.14
   servercount           = length(local.virtualmachines) 
-  disk_list             = tolist(["${local.gcp_vm_disk1}", "${local.gcp_vm_disk2}", "${local.gcp_vm_disk3}"])
-  server_disk_01        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk1}")
-  server_disk_02        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk2}")
-  server_disk_03        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk3}")
+  # disk_list             = tolist(["${local.gcp_vm_disk1}", "${local.gcp_vm_disk2}", "${local.gcp_vm_disk3}"])
+  # server_disk_01        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk1}")
+  # server_disk_02        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk2}")
+  # server_disk_03        = zipmap("${local.gcp_vm_name}","${local.gcp_vm_disk3}")
   
 }
-output "server_disk1_consolidation" {
-  value = "${local.server_disk_01}"
-}
-output "server_disk2_consolidation" {
-  value = "${local.server_disk_02}"
-}
-output "server_disk3_consolidation" {
-  value = "${local.server_disk_03}"
-}
+# output "server_disk1_consolidation" {
+#   value = "${local.server_disk_01}"
+# }
+# output "server_disk2_consolidation" {
+#   value = "${local.server_disk_02}"
+# }
+# output "server_disk3_consolidation" {
+#   value = "${local.server_disk_03}"
+#}
 # output "server_disk4_consolidation" {
 #   value = "${local.server_disk_04}"
 # }
 # output "server_index" {
 #   value = "${local.server_index}"
 # }
-output "server_disk_list" {
-  value = "${local.disk_list}"
-}
+# output "server_disk_list" {
+#   value = "${local.disk_list}"
+# }
 output "server_output" {
   value = "${local.gcp_vm_name}"
 }
@@ -105,15 +109,15 @@ output "server_instance_type" {
 # output "server_os_disk" {
 #   value = "${local.os_disk}"
 # }
-output "server_disk_1" {
-  value = "${local.gcp_vm_disk1}"
-}
-output "server_disk_2" {
-  value = "${local.gcp_vm_disk1}"
-}
-output "server_disk_3" {
-  value = "${local.gcp_vm_disk1}"
-}
+# output "server_disk_1" {
+#   value = "${local.gcp_vm_disk1}"
+# }
+# output "server_disk_2" {
+#   value = "${local.gcp_vm_disk1}"
+# }
+# output "server_disk_3" {
+#   value = "${local.gcp_vm_disk1}"
+# }
 # output "server_disk_4" {
 #   value = "${local.data_disk_04}"
 # }
