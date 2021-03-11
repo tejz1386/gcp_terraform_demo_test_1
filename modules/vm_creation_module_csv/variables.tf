@@ -26,30 +26,34 @@ default = {
     x1q_sql   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
     }
   }
-  variable "secondary_ip" {
-      type = list(string)
-      default = []
-  }
-  variable "alias_ip" {
+variable "secondary_ip" {
+    type = list(string)
+    default = []
+}
+variable "alias_ip" {
    type = list(string)
       default = ["yes"]
    }
   variable "sole_tenant" {
-      type = list(string)
-      default = []
+    type = list(string)
+    default = []
   }
-  variable "os_image" {
-      type = map
-      default = {
-          windows2016 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
-          windows2012 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
-          sles12sp4   = "projects/b95696467908/global/images/sles12sp4-std-byol-slb-image-01202021-v6"
-      }
+variable "os_image" {
+    type = map
+    default = {
+        windows2016 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
+        windows2012 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
+        sles12sp4   = "projects/b95696467908/global/images/sles12sp4-std-byol-slb-image-01202021-v6"
+    }
   }
-  variable "os_tag" {
-      type        = list(string)
-      default = []
-  }
+variable "os_tag" {
+    type        = list(string)
+    default = []
+}
+variable "metadata" {
+    type =string
+    default = ""
+}
 #   variable "on_host_maintenance" {
 #       default = ["yes"]
 #   }
@@ -59,3 +63,15 @@ default = {
 #       })
 #       default = "MIGRATE"
 #   } 
+variable "st_key" {
+    type = string
+    default = ""
+}
+variable "st_values" {
+    type = list(string)
+    default = []
+}
+variable "scopes" {
+    type = list(string)
+    default = ["compute-ro", "storage-rw", "service-management", "monitoring-write", "logging-write", "service-control", "https://www.googleapis.com/auth/trace.append" ]
+}

@@ -35,9 +35,11 @@ dynamic "scheduling" {
   for_each = var.sole_tenant
   content {
     node_affinities {
-      key = "os_type"
+      # key = "os_type"
+      key = var.st_key
       operator = "IN"
-      values = [ "slb_windows" ]
+      values = var.st_values
+      # values = [ "slb_windows" ]
     }
   }
 }
@@ -50,7 +52,7 @@ dynamic "scheduling" {
     dynamic "alias_ip_range" {
       # for_each = var.secondary_ip
       #  for_each = each.value.gcp_vm_lgl_ip[*]
-      for_each =  each.value.gcp_vm_lgl_ip == "null" ? var.secondary_ip : var.alias_ip 
+      for_each =  each.value.gcp_vm_lgl_ip == "na" ? var.secondary_ip : var.alias_ip 
       content {
        ip_cidr_range = "${each.value.gcp_vm_lgl_ip}/32"
       #  subnetwork_range_name = alias_ip_range.var.secondary_range
@@ -79,7 +81,8 @@ dynamic "scheduling" {
   }
   # metadata_startup_script = "echo ${each.value.gcp_sid} >> C:\\abc.txt" 
   metadata = {
-    windows-startup-script-ps1 = var.sole_tenant == "yes" ? "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt" : ""
+    # windows-startup-script-ps1 = "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt"
+    windows-startup-script-ps1 = ( var.metadata == "yes" ? "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt" : "" )
   }
 
   # dynamic "metadata"  {
@@ -90,6 +93,13 @@ dynamic "scheduling" {
   # }
 
   service_account {
-    scopes = ["compute-ro", "storage-rw", "service-management", "monitoring-write", "logging-write" ]
+    scopes = var.scopes
   }
+}  
+
+output "metadata" {
+  value = var.metadata
+}
+output "sole_tenant" {
+  value = var.sole_tenant
 }

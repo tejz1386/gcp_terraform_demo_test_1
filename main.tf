@@ -10,20 +10,26 @@
 # }
 module "app_vm_build_test" {
   source = "./modules/app_vm_build_test"
-  csv_input_storage_file_name = "./development/gcp_storage_input_test_disks.csv"
-  csv_input_file_name = "./development/gcp_server_input_test_disks.csv"
+  csv_input_storage_file_name = "./development/gcp_storage_app_details.csv"
+  csv_input_file_name = "./development/gcp_server_app_details.csv"
+  st_key = "os_type"
+  st_values = [ "slb_windows" ]
+
   # subnetwork = "subnet-development"
 }
 module "hana_vm_build_test" {
   source = "./modules/hana_vm_build_test"
-  csv_input_storage_file_name = "./development/gcp_storage_input_test_disks_hana.csv"
-  csv_input_file_name = "./development/gcp_server_input_test_disks_hana.csv"
+  csv_input_storage_file_name = "./development/gcp_storage_hana_details.csv"
+  csv_input_file_name = "./development/gcp_server_hana_details.csv"
   # subnetwork = "subnet-development"
 }
 module "sql_vm_build_test" {
   source = "./modules/sql_vm_build_test"
-  csv_input_storage_file_name = "./development/gcp_storage_input_test_disks_sql.csv"
-  csv_input_file_name = "./development/gcp_server_input_test_disks_sql.csv"
+  csv_input_storage_file_name = "./development/gcp_storage_sql_details.csv"
+  csv_input_file_name = "./development/gcp_server_sql_details.csv"
+  st_key = "os_type"
+  st_values = [ "slb_windows" ]
+
   # subnetwork = "subnet-development"
 }
 module "additional_disk" {

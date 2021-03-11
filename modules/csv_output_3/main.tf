@@ -23,13 +23,13 @@ triggers = {
 }
 
 locals {
-  add_gcp_vm_name           = null_resource.csv_interpolation_method.*.triggers.01
+  add_gcp_vm_name          = null_resource.csv_interpolation_method.*.triggers.01
   add_gcp_vm_disk          = null_resource.csv_interpolation_method.*.triggers.02
-  gcp_vm_disk_desc          = null_resource.csv_interpolation_method.*.triggers.03
-  gcp_vm_disk_disktype          = null_resource.csv_interpolation_method.*.triggers.04
-  gcp_vm_zone          = null_resource.csv_interpolation_method.*.triggers.05
-  gcp_vm_disk_label01          = null_resource.csv_interpolation_method.*.triggers.06
-  server_add_disk_01        = zipmap("${local.add_gcp_vm_name}","${local.add_gcp_vm_disk}")
+  gcp_vm_disk_desc         = null_resource.csv_interpolation_method.*.triggers.03
+  gcp_vm_disk_disktype     = null_resource.csv_interpolation_method.*.triggers.04
+  gcp_vm_zone              = null_resource.csv_interpolation_method.*.triggers.05
+  gcp_tier                 = null_resource.csv_interpolation_method.*.triggers.06
+  server_add_disk_01       = zipmap("${local.add_gcp_vm_name}","${local.add_gcp_vm_disk}")
 
   # add_gcp_vm_name           = locals.triggers.01
   # add_gcp_vm_disk          = locals.triggers.02
@@ -62,7 +62,7 @@ output "server_disk5_consolidation" {
   value = "${local.gcp_vm_zone}"
 }
 output "server_disk6_consolidation" {
-  value = "${local.gcp_vm_disk_label01}"
+  value = "${local.gcp_tier}"
 }
 output "server_add_disk_01" {
    value = "${local.server_add_disk_01}"

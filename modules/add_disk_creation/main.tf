@@ -9,7 +9,7 @@ resource "google_compute_disk" "testdisk" {
       type  = each.value.gcp_vm_disktype
       zone  = each.value.gcp_vm_zone
     labels = {
-      environment = "development"
+      tier = each.value.gcp_tier
     }
     physical_block_size_bytes = 4096
 }
