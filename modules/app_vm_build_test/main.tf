@@ -14,6 +14,7 @@ module "vm_creation_module_csv" {
   metadata = "yes"
   st_key = var.st_key
   st_values = var.st_values
+  os_tag = [ "tag1", "tag2" ]
   # subnetwork          = "${var.subnetwork}"
   # sec_alias_ip = module.csv_output.backup_ip
   # os_image = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"

@@ -30,6 +30,7 @@ resource "google_compute_instance" "instancecreationcsv" {
       # image = var.os_image
       image = lookup(var.os_image, each.value.gcp_os_image)
     }
+    # auto_delete = each.value.auto_delete
   }
 dynamic "scheduling" {
   for_each = var.sole_tenant
@@ -55,12 +56,12 @@ dynamic "scheduling" {
       for_each =  each.value.gcp_vm_lgl_ip == "na" ? var.secondary_ip : var.alias_ip 
       content {
        ip_cidr_range = "${each.value.gcp_vm_lgl_ip}/32"
-      #  subnetwork_range_name = alias_ip_range.var.secondary_range
+       subnetwork_range_name = "sec-1"
       }
     }
   }
   lifecycle {
-    ignore_changes = [attached_disk, labels]
+    ignore_changes = [attached_disk, boot_disk.0.initialize_params.0.image, metadata ]
   }
   # dynamic "scheduling" {
   #   for_each = var.on_host_maintenance
@@ -82,7 +83,8 @@ dynamic "scheduling" {
   # metadata_startup_script = "echo ${each.value.gcp_sid} >> C:\\abc.txt" 
   metadata = {
     # windows-startup-script-ps1 = "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt"
-    windows-startup-script-ps1 = ( var.metadata == "yes" ? "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt" : "" )
+    windows-startup-script-ps1 = ( var.metadata == "yes" ? "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt ; echo hi >>c:\\input.txt" : "" )
+    # sysprep-specialize-script-cmd = ( var.metadata == "yes" ? "echo ${each.value.gcp_vm_name} >> c:\\input.txt ; echo ${each.value.gcp_vm_lgl_ip} >> c:\\input.txt ; echo ${each.value.gcp_sid} >> c:\\input.txt" : "" )
   }
 
   # dynamic "metadata"  {
@@ -96,6 +98,8 @@ dynamic "scheduling" {
     scopes = var.scopes
   }
 }  
+
+
 
 output "metadata" {
   value = var.metadata

@@ -7,6 +7,7 @@ resource "google_compute_disk" "testdisk" {
       name  = "${each.value.add_gcp_vm_name}-${each.value.gcp_vm_disk_desc}"
       size  = each.value.add_gcp_vm_disk 
       type  = each.value.gcp_vm_disktype
+      # zone  = "europe-west4-b"
       zone  = each.value.gcp_vm_zone
     labels = {
       tier = each.value.gcp_tier
@@ -16,7 +17,7 @@ resource "google_compute_disk" "testdisk" {
 resource "google_compute_attached_disk" "attachdisk" {
   for_each      = var.add_disk_size
     disk     =  google_compute_disk.testdisk[each.key].self_link
-    device_name = google_compute_disk.testdisk[each.key].self_link
+    device_name = "${each.key}-datadisk-g"
     instance =  each.key
-    zone = each.value.gcp_vm_zone
+    zone = var.disk_zone[each.key]
 }

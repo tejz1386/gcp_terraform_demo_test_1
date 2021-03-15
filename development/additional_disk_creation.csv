@@ -1,1 +1,2 @@
 add_gcp_vm_name,add_gcp_vm_disk,gcp_vm_disk_desc,gcp_vm_disktype,gcp_vm_zone,gcp_tier
+gcp8286otq312,15,datadisk-g,pd-standard,europe-west4-b,x2q

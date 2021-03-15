@@ -21,9 +21,15 @@ variable "csv_input_file_name" {}
 variable "subnetwork" {
     type = map
 default = {
-    x1q_app   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
-    x1q_hana  ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
-    x1q_sql   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
+    x2q_app   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-app-nl2018"
+    x2q_hana  ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-hana-db-nl2018"
+    x2q_sql   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-sql-db-nl2018"
+    x2d_app   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-app-nl2018"
+    x2d_hana  ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-hana-db-nl2018"
+    x2d_sql   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-sql-db-nl2018"
+    x2s_app   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-app-nl2018"
+    x2s_hana  ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-hana-db-nl2018"
+    x2s_sql   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-dev-sbx-n-sql-db-nl2018"
     }
   }
 variable "secondary_ip" {
@@ -41,8 +47,8 @@ variable "alias_ip" {
 variable "os_image" {
     type = map
     default = {
-        windows2016 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
-        windows2012 = "projects/b95696467908/global/images/win2016-byol-slb-image-01062021-v6"
+        windows2016 = "projects/b95696467908/global/images/family/slb-sap-windows2016-byol-app"
+        windows2012 = "projects/b95696467908/global/images/family/slb-sap-windows2016-byol-app"
         sles12sp4   = "projects/b95696467908/global/images/sles12sp4-std-byol-slb-image-01202021-v6"
     }
   }

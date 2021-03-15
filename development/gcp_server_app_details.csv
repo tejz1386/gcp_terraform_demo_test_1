@@ -1,2 +1,9 @@
 gcp_vm_name,gcp_tier,gcp_sid,gcp_desc,gcp_vm_type,gcp_vm_phy_ip,gcp_vm_lgl_ip,gcp_vm_machine_type,gcp_region,gcp_zone,gcp_os_image,gcp_vm_state,gcp_vm_protection,gcp_tier_app,gcp_clustervm,gcp_creator,gcp_logicalname,gcp_serverstatus
-tst8286otd006,development-n-1,otx1d,opentext-content server admin,app,10.197.11.130,10.197.11.131,c2-standard-4,europe-west1,europe-west1-d,windows2016,RUNNING,true,x1q_app,yes,tejas,sape1sas00,in-dev
+gcp8286otq312,x2q,otx2q,opentext - icc server app + dp,app,10.197.82.10,na,c2-standard-4,europe-west4,europe-west4-b,windows2012,RUNNING,true,x2q_app,no,terraform,na,live
+gcp8286saq301,x2q,e2q,ecc - qa n - central services,appci,10.197.82.11,10.197.111.2,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,sape2qas00,live
+gcp8286saq304,x2q,e2q,ecc - qa n - app server #3,app,10.197.82.14,10.197.111.5,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,sape2qdi11,live
+gcp8286saq305,x2q,h2q,hcm - qa n - central services,appci,10.197.82.15,10.197.111.6,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,saph2qas00,live
+gcp8286otq313,x2q,b2q,me/mii - qa n - central services,appci,10.197.82.25,na,c2-standard-4,europe-west4,europe-west4-b,windows2012,RUNNING,true,x2q_app,no,terraform,sapb2qcs01,live
+gcp8286saq302,x2q,e2q,ecc - qa n - app server #1,app,10.197.82.12,10.197.111.3,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,sape2qdi02,in-dev
+gcp8286saq303,x2q,e2q,ecc - qa n - app server #2,app,10.197.82.13,10.197.111.4,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,sape2qdi10,in-dev
+gcp8286saq309,x2q,r2q,srm - qa n - app server #1,app,10.197.82.19,10.197.111.10,c2-standard-4,europe-west4,europe-west4-b,windows2016,RUNNING,true,x2q_app,no,terraform,sapr2qdi02,in-dev
