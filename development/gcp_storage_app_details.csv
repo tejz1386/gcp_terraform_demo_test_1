@@ -1,6 +1,5 @@
 gcp_vm_name,gcp_vm_disk1,gcp_vm_disk2,gcp_vm_disk3,gcp_vm_disk4,gcp_zone,gcp_tier
-gcp8286otq312,15,15,,,europe-west4-b,x2q
-gcp8286saq301,15,15,,,europe-west4-b,x2q
-gcp8286saq304,15,15,,,europe-west4-b,x2q
-gcp8286saq305,15,15,,,europe-west4-b,x2q
-gcp8286otq313,15,15,,,europe-west4-b,x2q
+gcp8286tst006,15,15,,,europe-west1-d,x1d
+gcp8286tst007,20,20,,,europe-west1-d,x1d
+gcp8286tst008,15,15,,,europe-west1-d,x1d
+gcp8286tst009,20,20,,,europe-west1-d,x1d

@@ -1,1 +1,0 @@
-variable "csv_input_storage_file_name" {}

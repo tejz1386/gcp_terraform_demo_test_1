@@ -1,26 +1,8 @@
 variable "csv_input_file_name" {}
-# variable "subnetwork" {}
-# variable "os_image" {}
-# variable "machine_type_size" {
-#     type = map
-# default = {
-#     small   = "n1-standard-1"
-#     medium  = "n1-standard-1"
-#     large   = "n1-standard-1"
-#     }
-#   }
-# variable "instance_type_size" {
-#     type = map
-# default = {
-#     hana   ="centos-7"
-#     sql    ="windows-2016"
-#     app    ="windows-2016"
-#     }
-#   }
-
 variable "subnetwork" {
     type = map
 default = {
+    x1q_app   ="projects/slb-it-infrastructure-01/regions/europe-west1/subnetworks/subnet01-ite-sap-prd-infra-be2012"
     x2q_app   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-app-nl2018"
     x2q_hana  ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-hana-db-nl2018"
     x2q_sql   ="projects/slb-it-infrastructure-01/regions/europe-west4/subnetworks/subnet01-ite-sap-qa-n-sql-db-nl2018"
@@ -60,15 +42,6 @@ variable "metadata" {
     type =string
     default = ""
 }
-#   variable "on_host_maintenance" {
-#       default = ["yes"]
-#   }
-#   variable "scheduling_a" {
-#       type = object({
-#          on_host_maintenance = list(string)   
-#       })
-#       default = "MIGRATE"
-#   } 
 variable "st_key" {
     type = string
     default = ""
